@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+* {
+  font-family: 'Poppins';
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+p {
+  color: #686868;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-weight: 800;
+}
+
+select option {
+  font-size: 12px !important;
+}
+
+.btn-start-now {
+  padding: 12px 40px;
+  color: #fff;
+  background: #4F52FF;
+  border-radius: 5px;
+}
+
+.btn-start-now:hover {
+  color: #fff;
+  background: #7173ff;
+}
+
+.navbar {
+  background: #FFFFFF !important;
+  -webkit-box-shadow: 0px -3px 80px rgba(0, 0, 0, 0.07), 0px -1.25333px 33.4221px rgba(0, 0, 0, 0.0503198), 0px -0.67009px 17.869px rgba(0, 0, 0, 0.0417275), 0px -0.37565px 10.0172px rgba(0, 0, 0, 0.035), 0px -0.1995px 5.32008px rgba(0, 0, 0, 0.0282725), 0px -0.08302px 2.21381px rgba(0, 0, 0, 0.0196802);
+          box-shadow: 0px -3px 80px rgba(0, 0, 0, 0.07), 0px -1.25333px 33.4221px rgba(0, 0, 0, 0.0503198), 0px -0.67009px 17.869px rgba(0, 0, 0, 0.0417275), 0px -0.37565px 10.0172px rgba(0, 0, 0, 0.035), 0px -0.1995px 5.32008px rgba(0, 0, 0, 0.0282725), 0px -0.08302px 2.21381px rgba(0, 0, 0, 0.0196802);
+}
+
+.navbar .navbar-brand img {
+  max-height: 55px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.navbar-nav .nav-item .nav-link.active {
+  font-weight: 600;
+}
+
+.wrap-heading-contain {
+  width: 100%;
+  padding: 45px 0;
+  min-height: calc(100vh - 117px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.wrap-heading-contain .wrap-content-heading .content-heading h2 {
+  font-size: 2.5rem;
+}
+
+.wrap-heading-contain .wrap-content-heading .content-heading p {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.wrap-heading-contain .wrap-img-heading img {
+  max-height: 780px;
+}
+
+.wrap-main-contain-resi h3 {
+  font-size: 1.8rem;
+}
+
+.wrap-main-contain-resi p {
+  font-size: 0.9rem;
+  color: #686868;
+}
+
+.btn-search-resi {
+  color: #fff;
+  background: #4F52FF;
+  border-radius: 5px;
+}
+
+.btn-search-resi img {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-search-resi:hover {
+  color: #fff;
+  background: #7173ff;
+}
+
+.wrap-contain-lacak-table {
+  margin-top: 50px;
+}
+
+.wrap-main-contain-ongkir {
+  margin-top: 80px;
+}
+
+footer {
+  background-color: #E5E5E5;
+  margin-top: 200px;
+}
+
+footer .img-footer {
+  padding: 15px;
+  text-align: center;
+}
+
+footer .img-footer img {
+  height: 55px;
+}
+
+.spinner-border {
+  width: 10px !important;
+}
+
+.lds-ring {
+  position: relative;
+  left: 38%;
+  right: auto;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ring div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #4F52FF;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #4F52FF transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.select2-selection__rendered {
+  line-height: calc(1.5em + .75rem + 2px) !important;
+}
+
+.select2-container .select2-selection--single {
+  height: calc(1.5em + .75rem + 2px) !important;
+}
+
+.select2-selection__arrow {
+  height: calc(1.5em + .75rem + 2px) !important;
+}
+/*# sourceMappingURL=main.css.map */
