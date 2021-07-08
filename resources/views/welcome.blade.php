@@ -148,7 +148,7 @@
                 <div class="row mt-4">
                     <div class="col">
                         <div class="form-group" >
-                          <select name="" id="" class="form-control select2 js-example-basic-multiple">
+                          <select name="" id="" class="form-control js-example-basic-multiple">
                             <option>Kota asal pengiriman</option>
                             <option value="">Jakarta</option>
                             <option value="">Yogyakarta</option>
@@ -158,7 +158,7 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                          <select name="" id="" class="form-control select2 js-example-basic-multiple">
+                          <select name="" id="" class="form-control js-example-basic-multiple">
                             <option>Kota tujuan pengiriman</option>
                             <option value="">Jakarta</option>
                             <option value="">Yogyakarta</option>

@@ -14,8 +14,8 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->integer("city_id")->primary();
+            $table->integer('province_id');
             $table->string("city_name");
             $table->string("type");
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Data;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use DataTables;
 use App\Province;
 
 class ProvinceController extends Controller
@@ -26,14 +27,23 @@ class ProvinceController extends Controller
     {
         $data = Province::all();
         
-        return response()->json([
-            "data" => $data
-        ]);
+        return DataTables::of($data)
+        ->addColumn('action', function($data){
+            $button = <<<EOT
+            <div class="btn-group">
+                <button class="delete btn btn-sm btn-primary" id="$data->province_id">
+                    Delete data
+                </button>
+            </div>
+            EOT;
+            return $button;
+        })->rawColumns(['action'])->make(true);
     }
 
-    public function insert(Request $request)
+    public function storeProvince(Request $request)
     {
         $province = new Province();
+        $province->province_id = $request->get("province_id");
         $province->name = $request->get("province_name");
         $province->save();
 
@@ -43,9 +53,14 @@ class ProvinceController extends Controller
         ]);
     }
 
-    public function delete($id)
+    public function deleteProvince($id)
     {
         $province = Province::findOrFail($id);
         $province->delete();
+
+        return response()->json([
+            "status" => "success",
+            "message" => "Data Dihapus"
+        ]);
     }
 }
