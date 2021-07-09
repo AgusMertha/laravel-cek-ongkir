@@ -53,6 +53,16 @@ class CityController extends Controller
 
     public function storeCity(Request $request)
     {
+        $isDataExists = City::where("city_id", $request->get("city"))->exists();
+
+        if($isDataExists)
+        {
+            return response()->json([
+                "status" => "error",
+                "message" => "Data sudah ada"
+            ]);
+        }
+
         $RAJAONGKIR_APP_KEY = env('RAJAONGKIR_APP_KEY');
 
         $response = Http::withHeaders([

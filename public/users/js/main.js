@@ -7,6 +7,7 @@ $.ajaxSetup({
 $("#loader").hide()
 $("#waybill_content").hide()
 
+// cek resi
 $("#form_waybill").on("submit", function(e){
   e.preventDefault();
 

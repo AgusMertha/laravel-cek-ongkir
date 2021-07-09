@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/users/plugin/select2/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/users/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/users/css/main.css" />
     <meta name="csrf-token" content="{{csrf_token()}}">
@@ -81,10 +80,6 @@
                 <div class="col">
                   <div class="form-group select2">
                     <select name="courier" id="courier" class="form-control">
-                      <option value="jne">JNE</option>
-                      <option value="jnt">JNT</option>
-                      <option value="sicepat">SI CEPAT</option>
-                      <option value="pos">POS</option>
                     </select>
                   </div>
                 </div>
@@ -144,54 +139,75 @@
             <div class="col-12">
               <h3>Cek Ongkir</h3>
               <p>cek pengiriman anda dengan mudah dan cepat</p>
-              <form action="">
+              <form action="" id="form_cost">
                 <div class="row mt-4">
-                    <div class="col">
+                    <div class="col-3">
                         <div class="form-group" >
-                          <select name="" id="" class="form-control js-example-basic-multiple">
-                            <option>Kota asal pengiriman</option>
-                            <option value="">Jakarta</option>
-                            <option value="">Yogyakarta</option>
-                            <option value="">Denpasar</option>
+                          <select name="origin_province" id="origin_province" class="form-control">
                           </select>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-3">
                         <div class="form-group">
-                          <select name="" id="" class="form-control js-example-basic-multiple">
-                            <option>Kota tujuan pengiriman</option>
-                            <option value="">Jakarta</option>
-                            <option value="">Yogyakarta</option>
-                            <option value="">Denpasar</option>
+                          <select name="origin_city" id="origin_city" class="form-control">
                           </select>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-3">
+                      <div class="form-group">
+                        <select name="origin_subdistrict" id="origin_subdistrict" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-3">
+                        <div class="form-group" >
+                          <select name="destination_province" id="destination_province" class="form-control">
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                          <select name="destination_city" id="destination_city" class="form-control">
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <select name="destination_subdistrict" id="destination_subdistrict" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-3">
                     <div class="form-group">
-                      <select name="" id="" class="form-control select2 js-example-basic-multiple">
-                        <option>Kota tujuan pengiriman</option>
-                        <option value="">Jakarta</option>
-                        <option value="">Yogyakarta</option>
-                        <option value="">Denpasar</option>
+                      <input type="number" value="100" name="weight" id="weight" class="form-control" placeholder="weight (gram)">
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <select name="select_courier" id="select_courier" class="form-control">
                       </select>
                     </div>
-                    </div>
-                    <div class="col">
-                    <button class="btn btn-search-resi">
+                  </div>
+                  <div class="col">
+                    <button type="submit" class="btn btn-search-resi">
                       <img src="images/ic-search.svg" alt="" />
                     </button>
                     </div>
                 </div>
                 <div class="row">
                   <div class="col-8">
-                    <div>
+                    <div id="loader_cost">
                       <div class="lds-ring" style="position: relative; left: 50%;right: auto"><div></div><div></div><div></div><div></div></div>
                     </div>
                     <label for="">
-                      <h3>JNE</h3>
-                      <p>Jalur nugraha ekakurir</p>
+                      <h3 id="courier_sn"></h3>
+                      <Jalur id="courier_fn"></p>
                     </label>
-                    <table class="table table-borderless rounded"  style="border: 1px solid #D9D9D9; border-radius: 1rem !important;">
+                    <table class="table table-borderless rounded" id="table_cost_count"  style="border: 1px solid #D9D9D9; border-radius: 1rem !important;">
                       <thead>
                         <tr>
                           <th scope="col">Service</th>
@@ -200,13 +216,8 @@
                           <th scope="col">Deskripsi</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>JNE OK</td>
-                          <td>4-5 hari</td>
-                          <td>Rp. 14,000</td>
-                          <td>ongkos kirim ekonomis</td>
-                        </tr>
+                      <tbody id="body_count_cost_table">
+                        
                       </tbody>
                     </table>
                   </div>
@@ -224,9 +235,9 @@
       </footer>
 
     <script src="/users/js/jquery-3.6.0.min.js"></script>
-    <script src="/users/plugin/select2/select2.min.js"></script>
     <script src="/users/js/bootstrap.min.js"></script>
     <script src="/users/js/main.js"></script>
+    <script src="/users/js/cost.js"></script>
 
     <script>
       function smoothScroll(target, duration) {
@@ -272,12 +283,6 @@
         smoothScroll('.cek-ongkir', 1000);
     })
  
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        $('.js-example-basic-multiple').select2();
-      });
     </script>
    
   </body>

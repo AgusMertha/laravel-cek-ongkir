@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Subdistrict;
+use DataTables;
 use DB;
 
 class SubDistrictController extends Controller
@@ -40,11 +41,33 @@ class SubDistrictController extends Controller
 
     public function getAllSubdistrict()
     {
-        $data = DB::table("cities")->join("subdistricts", "cities.city_id", "subdistricts.city_id")->get();
+        $dataSubdistrict = DB::table("provinces")->join("cities", "provinces.province_id", "=", "cities.province_id")->join("subdistricts", "cities.city_id", "subdistricts.city_id")->get();
+
+        return DataTables::of($dataSubdistrict)
+        ->addColumn('action', function($dataSubdistrict){
+            $button = <<<EOT
+            <div class="btn-group">
+                <button class="delete btn btn-sm btn-primary" id="$dataSubdistrict->subdistrict_id">
+                    Delete data
+                </button>
+            </div>
+            EOT;
+            return $button;
+        })->rawColumns(['action'])->make(true);
     }
 
     public function storeSubdistrict(Request $request)
     {
+        $isDataExists = Subdistrict::where("subdistrict_id", $request->get("subdistrict"))->exists();
+
+        if($isDataExists)
+        {
+            return response()->json([
+                "status" => "error",
+                "message" => "Data sudah ada"
+            ]);
+        }
+
         $RAJAONGKIR_APP_KEY = env('RAJAONGKIR_APP_KEY');
 
         $response = Http::withHeaders([
@@ -72,8 +95,8 @@ class SubDistrictController extends Controller
 
     public function deleteSubdistrict($id)
     {
-        $city = City::findOrFail($id);
-        $city->delete();
+        $subdistrict = Subdistrict::findOrFail($id);
+        $subdistrict->delete();
 
         return response()->json([
             "status" => "success",

@@ -17,11 +17,19 @@ $.ajax({
 
     $("#select_province").append(optionItem);
   }
+}).then(function(){
+  const id = $("#select_province").val()
+  getCity(id)
 })
 
 $("#select_province").on("change", function(){
   const provinceId = $(this).val()
 
+  getCity(provinceId)
+})
+
+function getCity(provinceId)
+{
   $.ajax({
     url: `/city/get-city-source/${provinceId}`,
     method: "GET",
@@ -45,7 +53,7 @@ $("#select_province").on("change", function(){
       console.log(error)
     }
   })
-})
+}
 
 $("#form_city").on("submit", function(e){
   e.preventDefault()
@@ -59,6 +67,10 @@ $("#form_city").on("submit", function(e){
     },
     success: function(data){
       $("#load").hide()
+      Swal.fire({
+        icon: data.status,
+        text: data.message,
+      })
       $('#city-table').DataTable().ajax.reload();
     }
   })

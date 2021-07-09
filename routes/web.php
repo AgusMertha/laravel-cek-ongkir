@@ -25,11 +25,18 @@ Route::prefix('admin')->group(function () {
     Route::get("province", "AdminController@province")->name("admin.province");
     Route::get("city", "AdminController@city")->name("admin.city");
     Route::get("subdistrict", "AdminController@subdistrict")->name("admin.subdistrict");
+    Route::get("courier", "AdminController@courier")->name("admin.courier");
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post("way-bill", "WayBillController@getWayBill")->name("waybill");
+
+Route::get("get-province", "CostController@getProvince");
+Route::get("get-courier", "CostController@getCourier");
+Route::get("get-city/{provinceId}", "CostController@getCity");
+Route::get("get-subdistrict/{cityId}", "CostController@getSubdistrict");
+Route::post("count-cost", "CostController@countCost");
 
 Route::prefix('province')->group(function () {
     Route::get("get-province-source", "Data\ProvinceController@getProvinceResource");
@@ -49,5 +56,13 @@ Route::prefix('city')->group(function () {
 Route::prefix('subdistrict')->group(function () {
     Route::get("get-city-data", "Data\SubDistrictController@getCity");
     Route::get("get-subdistrict-source/{cityId}", "Data\SubDistrictController@getSubdistrictByCityResource");
+    Route::get("get-subdistrict", "Data\SubDistrictController@getAllSubdistrict");
     Route::post("store-subdistrict", "Data\SubDistrictController@storeSubdistrict");
+    Route::post("delete-subdistrict/{id}", "Data\SubDistrictController@deleteSubdistrict");
+});
+
+Route::prefix('courier')->group(function () {
+    Route::post("store-courier", "Data\CourierController@storeCourier");
+    Route::post("delete-courier/{id}", "Data\CourierController@deleteCourier");
+    Route::get("get-courier", "Data\CourierController@getAllCourier");
 });

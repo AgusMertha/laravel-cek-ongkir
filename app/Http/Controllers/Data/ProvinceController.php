@@ -46,8 +46,8 @@ class ProvinceController extends Controller
 
         if($isDataExists){
             return response()->json([
-                'status' => "failed",
-                "message" => "Data sudah pernah ditambahkan"
+                'status' => "error",
+                "message" => "Data sudah ada"
             ]);
         }
 
