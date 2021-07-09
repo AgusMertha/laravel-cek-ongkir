@@ -119,6 +119,15 @@
                                             <span class="menu-text">Data Kurir</span>
                                         </a>
                                     </li>
+                                    <li class="menu-item menu-item-submenu menu-item-rel">
+                                        <a href="{{ route('logout') }}" class="menu-link" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            <span class="menu-text">Keluar</span>
+                                        </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </ul>
                             </div>
                         </div>
