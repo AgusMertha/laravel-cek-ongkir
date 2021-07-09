@@ -20,4 +20,9 @@ class AdminController extends Controller
     {
         return view("admin.city");
     }
+    
+    public function subdistrict()
+    {
+        return view("admin.subdistrict");
+    }
 }

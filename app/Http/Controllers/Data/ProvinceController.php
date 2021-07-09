@@ -42,6 +42,15 @@ class ProvinceController extends Controller
 
     public function storeProvince(Request $request)
     {
+        $isDataExists = Province::where("province_id", $request->get("province_id"))->exists();
+
+        if($isDataExists){
+            return response()->json([
+                'status' => "failed",
+                "message" => "Data sudah pernah ditambahkan"
+            ]);
+        }
+
         $province = new Province();
         $province->province_id = $request->get("province_id");
         $province->name = $request->get("province_name");
@@ -60,7 +69,7 @@ class ProvinceController extends Controller
 
         return response()->json([
             "status" => "success",
-            "message" => "Data Dihapus"
+            "message" => "Data berhasil dihapus"
         ]);
     }
 }

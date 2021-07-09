@@ -54,7 +54,7 @@
         </style>
     </head>
 
-    <body id="kt_body" class="header-fixed subheader-enabled page-loading">
+    <body  id="kt_body"  class="header-fixed subheader-enabled page-loading"  >
         <div id="load"> 
             <div class="cv-load">
               <span class="load"></span>
@@ -118,7 +118,7 @@
                                             <span class="menu-text">Dashboard</span>
                                         </a>
                                     </li>
-                                    <li class="menu-item menu-item-submenu menu-item-rel menu-item-open menu-item-here ">
+                                    <li class="menu-item menu-item-submenu menu-item-rel">
                                         <a  href="{{route("admin.province")}}" class="menu-link">
                                             <span class="menu-text">Data Provinsi</span>
                                         </a>
@@ -128,7 +128,7 @@
                                             <span class="menu-text">Data Kota / Kabupaten</span>
                                         </a>
                                     </li>
-                                    <li class="menu-item menu-item-submenu menu-item-rel">
+                                    <li class="menu-item menu-item-submenu menu-item-rel menu-item-open menu-item-here">
                                         <a  href="{{route("admin.subdistrict")}}" class="menu-link">
                                             <span class="menu-text">Data Kecamatan</span>
                                         </a>
@@ -153,12 +153,19 @@
                                         </div>
                                     </div>
                                         <div class="card-body">
-                                            <form action="" id="form_province" method="post">
+                                            <form action="" id="form_subdistrict" method="post">
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <select name="province" id="select_province" class="form-control">
-
+                                                            <select name="city" id="select_city" class="form-control" placeholder="pilih kota">
+                                                              
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <select name="subdistrict" id="select_subdistrict" class="form-control" disabled placeholder="pilih Kecamatan">
+                                                              
                                                             </select>
                                                         </div>
                                                     </div>
@@ -174,24 +181,28 @@
                                     <div class="card card-custom">
                                     <div class="card-header">
                                         <div class="card-title">
-                                            <h3 class="card-label">Data provinsi</h3>
+                                            <h3 class="card-label">Data Kota / Kabupaten</h3>
                                         </div>
                                     </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table id="province-table" class="display table table-striped table-hover">
+                                                <table id="city-table" class="display table table-striped table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Nama Provinsi</th>
+                                                            <th>Nama Kota / Kabupaten</th>
+                                                            <th>Kecamatan</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>#</th>
-                                                            <th>Nama Provinsi</th>
-                                                            <th>Action</th>
+                                                          <th>#</th>
+                                                          <th>Nama Provinsi</th>
+                                                          <th>Nama Kota / Kabupaten</th>
+                                                          <th>Kecamatan</th>
+                                                          <th>Action</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -215,116 +226,6 @@
         <script src="/users/plugin/select2/select2.min.js"></script>
         <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            $(document).ready(function(){
-                loadProvinceData()
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                })
-                $.ajax({
-                    url: "/province/get-province-source",
-                    method: "GET",
-                    success: function(data){
-                        let optionItem = ''
-                        data.forEach(item => {
-                            optionItem += `<option value="${item.province_id}">${item.province}</option>`
-                        });
-
-                        $("#select_province").append(optionItem);
-                    }
-                }).then(function(){
-                    submitProvince()
-                   
-                })
-
-                $(document).on("click", ".delete", function(){
-                    const id = $(this).attr("id");
-                
-                    $.ajax({
-                        url: `/province/delete-province/${id}`,
-                        method: "POST",
-                        success: function(data){
-                            $('#province-table').DataTable().ajax.reload();
-                            console.log(data);
-                        },
-                        error: function(xhr, status, error){
-                            console.log(xhr.responseText)
-                            console.log(status)
-                            console.log(error)
-                        }
-                    })
-                })
-            })
-
-            function submitProvince()
-            {
-                $("#form_province").on("submit", function(e){
-                    e.preventDefault();
-
-                    const selectedText = $("#select_province option:selected").html();
-                    const selectedProvince = $("#select_province").val();
-                    const data = {
-                        province_id: selectedProvince,
-                        province_name: selectedText,
-                    }
-
-                    $.ajax({
-                        url: "{{route('province.store')}}",
-                        method: 'POST',
-                        data: data,
-                        beforeSend: function(){
-                            $("#load").show()
-                        },
-                        success: function(data){
-                            $("#load").hide()
-                            if(data.status == "failed"){
-                                Swal.fire({
-                                    icon: data.status,
-                                    text: data.message,
-                                })
-                            }else if(data.status == "success"){
-                                $('#province-table').DataTable().ajax.reload();
-                            }
-                        },
-                        error: function(xhr, status, error){
-                            console.log(xhr.responseText)
-                            console.log(status)
-                            console.log(error)
-                        }
-                    })
-                })
-            }
-
-            function loadProvinceData()
-            {   
-                $("#province-table").DataTable({
-                    processing: true,
-                    serverSide: true,
-                    autoWidth: false,
-                    ajax: {
-                        url: "/province/get-province",
-                    },
-                    columns: [
-                        {
-                            data: "province_id",
-                            render: function (data, type, row, meta) {
-                                return meta.row + meta.settings._iDisplayStart + 1;
-                            }
-                        },
-                        {
-                            data: "name",
-                            name: "name"
-                        },
-                        {
-                            data: "action",
-                            name: "action"
-                        }
-                    ]
-                    
-                })
-            }
-        </script>
+        <script src="/adm/js/subdistrict.js"></script>
     </body>
 </html>

@@ -78,4 +78,15 @@ class CityController extends Controller
             "message" => "Data berhasil disimpan"
         ]);
     }
+
+    public function deleteCity($id)
+    {
+        $city = City::findOrFail($id);
+        $city->delete();
+
+        return response()->json([
+            "status" => "success",
+            "message" => "Data berhasil dihapus"
+        ]);
+    }
 }

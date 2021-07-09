@@ -15,7 +15,43 @@
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
         <meta name="csrf-token" content="{{csrf_token()}}">
-
+        <style>
+            #load {
+                position: fixed;
+                top: 0;
+                z-index: 999999999;
+                width: 100%;
+                height: 100%;
+                display: none;
+                background: rgba(0,0,0,0.6);
+            }
+            
+            .cv-load {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .load {
+                width: 60px;
+                height: 60px;
+                border: 4px #ddd solid;
+                border-top: 4px #2e93e6 solid;
+                border-radius: 50%;
+                animation: sp-anime 0.8s infinite linear;
+            }
+            
+            @keyframes sp-anime {
+                0% {
+                    transform: rotate(0deg);
+                }
+        
+                100% {
+                    transform: rotate(359deg);
+                }
+            }
+        </style>
     </head>
 
     <body  id="kt_body"  class="header-fixed subheader-enabled page-loading"  >
@@ -93,7 +129,7 @@
                                         </a>
                                     </li>
                                     <li class="menu-item menu-item-submenu menu-item-rel">
-                                        <a  href="https://www.google.com" class="menu-link">
+                                        <a  href="{{route("admin.subdistrict")}}" class="menu-link">
                                             <span class="menu-text">Data Kecamatan</span>
                                         </a>
                                     </li>
@@ -189,6 +225,7 @@
         <script src="/adm/js/scripts.bundle.js?v=7.0.6"></script>
         <script src="/users/plugin/select2/select2.min.js"></script>
         <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/adm/js/city.js"></script>
     </body>
 </html>

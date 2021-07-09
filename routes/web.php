@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::get("/", "AdminController@index")->name("admin.index");
     Route::get("province", "AdminController@province")->name("admin.province");
     Route::get("city", "AdminController@city")->name("admin.city");
+    Route::get("subdistrict", "AdminController@subdistrict")->name("admin.subdistrict");
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -42,4 +43,11 @@ Route::prefix('city')->group(function () {
     Route::get("get-city-source/{provinceId}", "Data\CityController@getCityByProvinceResource");
     Route::get("get-city", "Data\CityController@getAllCity");
     Route::post("store-city", "Data\CityController@storeCity");
+    Route::post("delete-city/{id}", "Data\CityController@deleteCity");
+});
+
+Route::prefix('subdistrict')->group(function () {
+    Route::get("get-city-data", "Data\SubDistrictController@getCity");
+    Route::get("get-subdistrict-source/{cityId}", "Data\SubDistrictController@getSubdistrictByCityResource");
+    Route::post("store-subdistrict", "Data\SubDistrictController@storeSubdistrict");
 });

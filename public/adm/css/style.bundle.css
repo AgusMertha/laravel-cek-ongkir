@@ -58118,73 +58118,6 @@ select.select2 {
   .note-editor .is-invalid .note-editor {
     border-color: #F64E60; }
 
-html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown),
-body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) {
-  overflow-y: initial !important; }
-  html.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown):not(.sweetalert2-nopadding),
-  body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown):not(.sweetalert2-nopadding) {
-    padding-right: 0 !important; }
-
-.swal2-popup {
-  padding: 2rem;
-  border-radius: 0.42rem; }
-  .swal2-popup .swal2-icon {
-    margin: 2rem 0 0rem 0; }
-  .swal2-popup .swal2-title {
-    font-weight: 500;
-    font-size: 1.3rem;
-    margin: 2rem 0 0 0;
-    color: #181C32; }
-  .swal2-popup .swal2-content {
-    font-weight: normal;
-    font-size: 1.1rem;
-    margin-top: 1.5rem;
-    color: #3F4254; }
-  .swal2-popup .btn {
-    margin: 15px 5px 0; }
-  .swal2-popup .swal2-styled:focus {
-    -webkit-box-shadow: none;
-    box-shadow: none; }
-  .swal2-popup .swal2-actions {
-    margin: 1.5rem auto 1rem auto; }
-
-.swal2-container {
-  overflow-y: hidden !important; }
-  .swal2-container.swal2-shown {
-    background-color: rgba(0, 0, 0, 0.2); }
-  .swal2-container .swal2-html-container {
-    max-height: 200px;
-    overflow: auto; }
-
-body.swal2-height-auto {
-  height: 100% !important; }
-
-.swal2-icon.swal2-warning {
-  border-color: #FFA800;
-  color: #FFA800; }
-
-.swal2-icon.swal2-error {
-  border-color: #F64E60;
-  color: #F64E60; }
-  .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
-    background-color: rgba(246, 78, 96, 0.75); }
-
-.swal2-icon.swal2-success {
-  border-color: #1BC5BD;
-  color: #1BC5BD; }
-  .swal2-icon.swal2-success [class^=swal2-success-line] {
-    background-color: #1BC5BD; }
-  .swal2-icon.swal2-success .swal2-success-ring {
-    border-color: rgba(27, 197, 189, 0.3); }
-
-.swal2-icon.swal2-info {
-  border-color: #6993FF;
-  color: #6993FF; }
-
-.swal2-icon.swal2-question {
-  border-color: #8950FC;
-  color: #8950FC; }
-
 .tagify {
   border-radius: 0.42rem;
   border-color: #E4E6EF;
@@ -59345,7 +59278,7 @@ body {
     .header-fixed[data-header-scroll="on"] .header {
       background-size: cover;
       background-repeat: no-repeat;
-      background-image: url("../media/bg/bg-7.jpg");
+      background-image: url("/images/bg-5.jpg");
       position: fixed;
       top: 0;
       right: 0;

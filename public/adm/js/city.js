@@ -1,4 +1,4 @@
-// loadCityData()
+loadCityData()
 
 $.ajaxSetup({
   headers: {
@@ -25,7 +25,11 @@ $("#select_province").on("change", function(){
   $.ajax({
     url: `/city/get-city-source/${provinceId}`,
     method: "GET",
+    beforeSend: function(){
+      $("#load").show()
+    }, 
     success: function(data){
+      $("#load").hide()
       $("#select_city").html("")
       let cityItem = ''
       data.forEach(item => {
@@ -50,7 +54,11 @@ $("#form_city").on("submit", function(e){
     url: "/city/store-city",
     method: "POST",
     data: $(this).serialize(),
+    beforeSend: function(){
+      $("#load").show()
+    },
     success: function(data){
+      $("#load").hide()
       $('#city-table').DataTable().ajax.reload();
     }
   })
@@ -114,5 +122,19 @@ function loadCityData()
 $(document).on("click", ".delete", function(){
   const id = $(this).attr("id")
 
-  
+  $.ajax({
+    url: `/city/delete-city/${id}`,
+    method: "POST",
+    beforeSend: function(){
+      $("#load").show()
+    },
+    success: function(data){
+      $("#load").hide()
+      Swal.fire({
+        icon: data.status,
+        text: data.message,
+      })
+      $('#city-table').DataTable().ajax.reload();
+    }
+  })
 })
