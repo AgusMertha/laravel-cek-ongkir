@@ -11,7 +11,6 @@
         <link href="/adm/css/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <link href="/adm/css/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
         <link href="/adm/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-        <link href="/users/plugin/select2/select2.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
         <meta name="csrf-token" content="{{csrf_token()}}">
@@ -212,7 +211,6 @@
         <script src="/adm/js/plugins.bundle.js?v=7.0.6"></script>
         <script href="/adm/js/prismjs.bundle.js?v=7.0.6"></script>
         <script src="/adm/js/scripts.bundle.js?v=7.0.6"></script>
-        <script src="/users/plugin/select2/select2.min.js"></script>
         <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="/adm/js/city.js"></script>
