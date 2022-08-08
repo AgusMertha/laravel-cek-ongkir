@@ -74,7 +74,7 @@ class CityController extends Controller
 
         $results = $response->json();
 
-        $data = $results['rajaongkir']['results'];
+        $data = $results->rajaongkir->results;
 
         $city = new City();
         $city->city_id = $data['city_id'];
